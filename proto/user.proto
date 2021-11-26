@@ -5,8 +5,8 @@ package ponica.user;
 option go_package = "gen/api";
 
 service UserService {
-    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
     rpc ShowUser(ShowUserRequest) returns (ShowUserResponse) {}
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
 }
 
 message User {
@@ -21,17 +21,6 @@ message UserInput {
 }
 
 /*
-    Create
-*/
-message CreateUserRequest {
-    UserInput userInput = 1;
-}
-
-message CreateUserResponse {
-    int32 id = 1;
-}
-
-/*
     Show
 */
 message ShowUserRequest {
@@ -40,4 +29,15 @@ message ShowUserRequest {
 
 message ShowUserResponse {
     User user = 1;
+}
+
+/*
+    Create
+*/
+message CreateUserRequest {
+    UserInput userInput = 1;
+}
+
+message CreateUserResponse {
+    int32 id = 1;
 }
