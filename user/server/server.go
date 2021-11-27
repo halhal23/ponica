@@ -8,6 +8,7 @@ import (
 	"ponica/user/service"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -22,6 +23,8 @@ func main() {
 	server := grpc.NewServer()
 	service := service.NewUserService()
 	api.RegisterUserServiceServer(server, &service)
+
+	reflection.Register(server)
 
 	if err := server.Serve(lis); err != nil {
 		log.Fatalf("Faild to server: %v\n", err)

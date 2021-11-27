@@ -12,9 +12,10 @@ func NewUserService() UserService {
 }
 
 func (service *UserService) ShowUser(ctx context.Context, req *api.ShowUserRequest) (*api.ShowUserResponse, error) {
+	inputId := req.GetId()
 	return &api.ShowUserResponse{
 		User: &api.User{
-			Id:    1,
+			Id:    inputId,
 			Name:  "show user name",
 			Email: "show user email",
 		},
