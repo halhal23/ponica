@@ -1,12 +1,12 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"net"
 
 	"comment/pb"
+	"comment/service"
 
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	"go.uber.org/zap"
@@ -33,19 +33,12 @@ func main() {
 			grpc_zap.UnaryServerInterceptor(zapLogger),
 		),
 	)
-	pb.RegisterCommentServiceServer(server, &CommentService{})
+	svc := service.NewCommentService()
+	pb.RegisterCommentServiceServer(server, svc)
 
 	reflection.Register(server)
 
 	if err := server.Serve(lis); err != nil {
 		log.Fatalf("Faild to serve: %v\n", err)
 	}
-}
-
-type CommentService struct{}
-
-func (service *CommentService) ShowComment(ctx context.Context, req *pb.ShowCommentRequest) (*pb.ShowCommentResponse, error) {
-	return &pb.ShowCommentResponse{
-		CommentId: 234,
-	}, nil
 }
