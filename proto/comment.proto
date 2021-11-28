@@ -6,11 +6,16 @@ option go_package = "./pb";
 
 service CommentService {
     rpc ShowComment(ShowCommentRequest) returns (ShowCommentResponse) {}
+    rpc CreateComment(CreateCommentRequest) returns (CreateCommentResponse) {}
 }
 
 message Comment {
     int32 comment_id = 1;
     string content = 2;
+}
+
+message CommentInput {
+    string content = 1;
 }
 
 /*
@@ -21,5 +26,16 @@ message ShowCommentRequest {
 }
 
 message ShowCommentResponse {
+    int32 comment_id = 1;
+}
+
+/* 
+    Create
+*/
+message CreateCommentRequest {
+    CommentInput commentInput = 1;
+}
+
+message CreateCommentResponse {
     int32 comment_id = 1;
 }

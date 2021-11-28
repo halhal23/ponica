@@ -79,6 +79,53 @@ func (x *Comment) GetContent() string {
 	return ""
 }
 
+type CommentInput struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Content string `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+}
+
+func (x *CommentInput) Reset() {
+	*x = CommentInput{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_comment_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CommentInput) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CommentInput) ProtoMessage() {}
+
+func (x *CommentInput) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_comment_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CommentInput.ProtoReflect.Descriptor instead.
+func (*CommentInput) Descriptor() ([]byte, []int) {
+	return file_proto_comment_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *CommentInput) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
 //
 //Show
 type ShowCommentRequest struct {
@@ -92,7 +139,7 @@ type ShowCommentRequest struct {
 func (x *ShowCommentRequest) Reset() {
 	*x = ShowCommentRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_comment_proto_msgTypes[1]
+		mi := &file_proto_comment_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -105,7 +152,7 @@ func (x *ShowCommentRequest) String() string {
 func (*ShowCommentRequest) ProtoMessage() {}
 
 func (x *ShowCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_comment_proto_msgTypes[1]
+	mi := &file_proto_comment_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118,7 +165,7 @@ func (x *ShowCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShowCommentRequest.ProtoReflect.Descriptor instead.
 func (*ShowCommentRequest) Descriptor() ([]byte, []int) {
-	return file_proto_comment_proto_rawDescGZIP(), []int{1}
+	return file_proto_comment_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ShowCommentRequest) GetCommentId() int32 {
@@ -139,7 +186,7 @@ type ShowCommentResponse struct {
 func (x *ShowCommentResponse) Reset() {
 	*x = ShowCommentResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_comment_proto_msgTypes[2]
+		mi := &file_proto_comment_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -152,7 +199,7 @@ func (x *ShowCommentResponse) String() string {
 func (*ShowCommentResponse) ProtoMessage() {}
 
 func (x *ShowCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_comment_proto_msgTypes[2]
+	mi := &file_proto_comment_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -165,10 +212,106 @@ func (x *ShowCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShowCommentResponse.ProtoReflect.Descriptor instead.
 func (*ShowCommentResponse) Descriptor() ([]byte, []int) {
-	return file_proto_comment_proto_rawDescGZIP(), []int{2}
+	return file_proto_comment_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ShowCommentResponse) GetCommentId() int32 {
+	if x != nil {
+		return x.CommentId
+	}
+	return 0
+}
+
+//
+//Create
+type CreateCommentRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CommentInput *CommentInput `protobuf:"bytes,1,opt,name=commentInput,proto3" json:"commentInput,omitempty"`
+}
+
+func (x *CreateCommentRequest) Reset() {
+	*x = CreateCommentRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_comment_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateCommentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCommentRequest) ProtoMessage() {}
+
+func (x *CreateCommentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_comment_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCommentRequest.ProtoReflect.Descriptor instead.
+func (*CreateCommentRequest) Descriptor() ([]byte, []int) {
+	return file_proto_comment_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CreateCommentRequest) GetCommentInput() *CommentInput {
+	if x != nil {
+		return x.CommentInput
+	}
+	return nil
+}
+
+type CreateCommentResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CommentId int32 `protobuf:"varint,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
+}
+
+func (x *CreateCommentResponse) Reset() {
+	*x = CreateCommentResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_comment_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateCommentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCommentResponse) ProtoMessage() {}
+
+func (x *CreateCommentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_comment_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCommentResponse.ProtoReflect.Descriptor instead.
+func (*CreateCommentResponse) Descriptor() ([]byte, []int) {
+	return file_proto_comment_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CreateCommentResponse) GetCommentId() int32 {
 	if x != nil {
 		return x.CommentId
 	}
@@ -184,20 +327,37 @@ var file_proto_comment_proto_rawDesc = []byte{
 	0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x63,
 	0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74,
 	0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65,
-	0x6e, 0x74, 0x22, 0x33, 0x0a, 0x12, 0x53, 0x68, 0x6f, 0x77, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e,
-	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x6d,
+	0x6e, 0x74, 0x22, 0x28, 0x0a, 0x0c, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x6e, 0x70,
+	0x75, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x22, 0x33, 0x0a, 0x12,
+	0x53, 0x68, 0x6f, 0x77, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x49,
+	0x64, 0x22, 0x34, 0x0a, 0x13, 0x53, 0x68, 0x6f, 0x77, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x6d,
 	0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x63, 0x6f,
-	0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x22, 0x34, 0x0a, 0x13, 0x53, 0x68, 0x6f, 0x77, 0x43,
-	0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d,
-	0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x05, 0x52, 0x09, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x32, 0x5c, 0x0a,
-	0x0e, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
-	0x4a, 0x0a, 0x0b, 0x53, 0x68, 0x6f, 0x77, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x1b,
-	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x53, 0x68, 0x6f, 0x77, 0x43, 0x6f, 0x6d,
-	0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x63, 0x6f,
-	0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x53, 0x68, 0x6f, 0x77, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x06, 0x5a, 0x04, 0x2e,
-	0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x22, 0x51, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x39, 0x0a, 0x0c, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e,
+	0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x52, 0x0c, 0x63, 0x6f,
+	0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x22, 0x36, 0x0a, 0x15, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74,
+	0x49, 0x64, 0x32, 0xae, 0x01, 0x0a, 0x0e, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4a, 0x0a, 0x0b, 0x53, 0x68, 0x6f, 0x77, 0x43, 0x6f, 0x6d,
+	0x6d, 0x65, 0x6e, 0x74, 0x12, 0x1b, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x53,
+	0x68, 0x6f, 0x77, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x1c, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x53, 0x68, 0x6f, 0x77,
+	0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x12, 0x50, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x65,
+	0x6e, 0x74, 0x12, 0x1d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x1e, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x00, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -212,20 +372,26 @@ func file_proto_comment_proto_rawDescGZIP() []byte {
 	return file_proto_comment_proto_rawDescData
 }
 
-var file_proto_comment_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_proto_comment_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_proto_comment_proto_goTypes = []interface{}{
-	(*Comment)(nil),             // 0: comment.Comment
-	(*ShowCommentRequest)(nil),  // 1: comment.ShowCommentRequest
-	(*ShowCommentResponse)(nil), // 2: comment.ShowCommentResponse
+	(*Comment)(nil),               // 0: comment.Comment
+	(*CommentInput)(nil),          // 1: comment.CommentInput
+	(*ShowCommentRequest)(nil),    // 2: comment.ShowCommentRequest
+	(*ShowCommentResponse)(nil),   // 3: comment.ShowCommentResponse
+	(*CreateCommentRequest)(nil),  // 4: comment.CreateCommentRequest
+	(*CreateCommentResponse)(nil), // 5: comment.CreateCommentResponse
 }
 var file_proto_comment_proto_depIdxs = []int32{
-	1, // 0: comment.CommentService.ShowComment:input_type -> comment.ShowCommentRequest
-	2, // 1: comment.CommentService.ShowComment:output_type -> comment.ShowCommentResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: comment.CreateCommentRequest.commentInput:type_name -> comment.CommentInput
+	2, // 1: comment.CommentService.ShowComment:input_type -> comment.ShowCommentRequest
+	4, // 2: comment.CommentService.CreateComment:input_type -> comment.CreateCommentRequest
+	3, // 3: comment.CommentService.ShowComment:output_type -> comment.ShowCommentResponse
+	5, // 4: comment.CommentService.CreateComment:output_type -> comment.CreateCommentResponse
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_proto_comment_proto_init() }
@@ -247,7 +413,7 @@ func file_proto_comment_proto_init() {
 			}
 		}
 		file_proto_comment_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ShowCommentRequest); i {
+			switch v := v.(*CommentInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -259,7 +425,43 @@ func file_proto_comment_proto_init() {
 			}
 		}
 		file_proto_comment_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ShowCommentRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_comment_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ShowCommentResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_comment_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateCommentRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_comment_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateCommentResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -277,7 +479,7 @@ func file_proto_comment_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_comment_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -304,6 +506,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CommentServiceClient interface {
 	ShowComment(ctx context.Context, in *ShowCommentRequest, opts ...grpc.CallOption) (*ShowCommentResponse, error)
+	CreateComment(ctx context.Context, in *CreateCommentRequest, opts ...grpc.CallOption) (*CreateCommentResponse, error)
 }
 
 type commentServiceClient struct {
@@ -323,9 +526,19 @@ func (c *commentServiceClient) ShowComment(ctx context.Context, in *ShowCommentR
 	return out, nil
 }
 
+func (c *commentServiceClient) CreateComment(ctx context.Context, in *CreateCommentRequest, opts ...grpc.CallOption) (*CreateCommentResponse, error) {
+	out := new(CreateCommentResponse)
+	err := c.cc.Invoke(ctx, "/comment.CommentService/CreateComment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CommentServiceServer is the server API for CommentService service.
 type CommentServiceServer interface {
 	ShowComment(context.Context, *ShowCommentRequest) (*ShowCommentResponse, error)
+	CreateComment(context.Context, *CreateCommentRequest) (*CreateCommentResponse, error)
 }
 
 // UnimplementedCommentServiceServer can be embedded to have forward compatible implementations.
@@ -334,6 +547,9 @@ type UnimplementedCommentServiceServer struct {
 
 func (*UnimplementedCommentServiceServer) ShowComment(context.Context, *ShowCommentRequest) (*ShowCommentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ShowComment not implemented")
+}
+func (*UnimplementedCommentServiceServer) CreateComment(context.Context, *CreateCommentRequest) (*CreateCommentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateComment not implemented")
 }
 
 func RegisterCommentServiceServer(s *grpc.Server, srv CommentServiceServer) {
@@ -358,6 +574,24 @@ func _CommentService_ShowComment_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CommentService_CreateComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCommentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommentServiceServer).CreateComment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/comment.CommentService/CreateComment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommentServiceServer).CreateComment(ctx, req.(*CreateCommentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _CommentService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "comment.CommentService",
 	HandlerType: (*CommentServiceServer)(nil),
@@ -365,6 +599,10 @@ var _CommentService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ShowComment",
 			Handler:    _CommentService_ShowComment_Handler,
+		},
+		{
+			MethodName: "CreateComment",
+			Handler:    _CommentService_CreateComment_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
