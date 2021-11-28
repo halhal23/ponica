@@ -8,6 +8,8 @@ import (
 
 	"comment/pb"
 
+	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -20,7 +22,17 @@ func main() {
 		log.Fatalf("Faild to listen: %v\n", err)
 	}
 
-	server := grpc.NewServer()
+	zapLogger, err := zap.NewProduction()
+	if err != nil {
+		log.Fatalf("Faild to log: %v\n", err)
+	}
+	grpc_zap.ReplaceGrpcLogger(zapLogger)
+
+	server := grpc.NewServer(
+		grpc.UnaryInterceptor(
+			grpc_zap.UnaryServerInterceptor(zapLogger),
+		),
+	)
 	pb.RegisterCommentServiceServer(server, &CommentService{})
 
 	reflection.Register(server)
