@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package comment;
+
+option go_package = "./pb";
+
+service CommentService {
+    rpc ShowComment(ShowCommentRequest) returns (ShowCommentResponse) {}
+}
+
+message Comment {
+    int32 comment_id = 1;
+    string content = 2;
+}
+
+/*
+    Show
+*/
+message ShowCommentRequest {
+    int32 comment_id = 1;
+}
+
+message ShowCommentResponse {
+    int32 comment_id = 1;
+}
