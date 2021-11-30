@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
 
 	"ponica/gateway/gen/api"
+	"ponica/gateway/handler"
 
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
@@ -20,16 +20,10 @@ func main() {
 	}
 	userClient := api.NewUserServiceClient(conn)
 
+	hdl := handler.NewRestHandler(userClient)
+
 	e := gin.Default()
-	e.GET("/check", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, "this is rest gateway.")
-	})
-	e.GET("/user", func(ctx *gin.Context) {
-		res, err := userClient.ShowUser(ctx, &api.ShowUserRequest{Id: 40})
-		if err != nil {
-			log.Fatalf("Failed to showUser: %v\n", err)
-		}
-		ctx.JSON(http.StatusOK, res)
-	})
+	e.GET("/check", hdl.HeathCheck)
+	e.GET("/user", hdl.ShowUser)
 	e.Run()
 }
