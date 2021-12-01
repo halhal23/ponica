@@ -3,11 +3,13 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"ponica/gateway/api"
 	api_pb "ponica/gateway/gen/api"
 	"ponica/gateway/handler"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
@@ -35,6 +37,20 @@ func main() {
 	hdl := handler.NewRestHandler(userClient)
 
 	e := gin.Default()
+	e.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"http://localhost:3000"},
+		AllowMethods: []string{"GET", "POST", "PATCH", "OPTIONS"},
+		AllowHeaders: []string{
+			"Access-Control-Allow-Credentials",
+			"Access-Control-Allow-Headers",
+			"Content-Type",
+			"Content-Length",
+			"Accept-Encoding",
+			"Authorization",
+		},
+		AllowCredentials: true,
+		MaxAge:           24 * time.Hour,
+	}))
 	e.GET("/check", hdl.HeathCheck)
 	e.GET("/user", hdl.ShowUser)
 	g := e.Group("/api")
