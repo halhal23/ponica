@@ -55,7 +55,7 @@ func main() {
 	e.GET("/user", hdl.ShowUser)
 	g := e.Group("/api")
 	{
-		g.GET("/popular", api.FetchMostPopularVideos())
+		g.GET("/populars", api.FetchMostPopularVideos())
 	}
 	e.Run()
 }
