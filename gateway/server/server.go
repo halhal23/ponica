@@ -9,11 +9,16 @@ import (
 	"ponica/gateway/handler"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 )
 
 func init() {
+	if err := godotenv.Load(".env"); err != nil {
+		log.Fatalf("Faild to load .env by godotenv: %v\n", err)
+	}
+
 	logrus.SetLevel(logrus.DebugLevel)
 	logrus.SetFormatter(&logrus.JSONFormatter{})
 }
