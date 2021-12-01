@@ -18,7 +18,7 @@ func NewRestHandler(userClient api.UserServiceClient) RestHandler {
 }
 
 func (handler *RestHandler) HeathCheck(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, "Status Ok, keep going man.")
+	ctx.JSON(http.StatusOK, "Status Ok, keep going man!!!")
 }
 
 func (handler *RestHandler) ShowUser(ctx *gin.Context) {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"ponica/gateway/gen/api"
+	api_pb "ponica/gateway/gen/api"
 	"ponica/gateway/handler"
 
 	"github.com/gin-gonic/gin"
@@ -18,7 +18,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Faild to connect user client: %v\n", err)
 	}
-	userClient := api.NewUserServiceClient(conn)
+	userClient := api_pb.NewUserServiceClient(conn)
 
 	hdl := handler.NewRestHandler(userClient)
 
