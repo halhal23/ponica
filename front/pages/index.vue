@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="test">index hello</div>
     <div v-for="item in items" :key="item.id">
       <app-video :item="item" :video-id="item.id" />
       <br />

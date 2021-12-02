@@ -8,6 +8,7 @@ import (
 	"ponica/gateway/api"
 	api_pb "ponica/gateway/gen/api"
 	"ponica/gateway/handler"
+	"ponica/gateway/middleware"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -37,6 +38,7 @@ func main() {
 	hdl := handler.NewRestHandler(userClient)
 
 	e := gin.Default()
+	e.Use(middleware.YoutbeService())
 	e.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"http://localhost:3000"},
 		AllowMethods: []string{"GET", "POST", "PATCH", "OPTIONS"},
