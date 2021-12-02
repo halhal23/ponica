@@ -24,6 +24,12 @@ func FetchMostPopularVideos() gin.HandlerFunc {
 			"id",
 			"snippet",
 		}).Chart("mostPopular").MaxResults(3)
+
+		pageToken := ctx.Query("pageToken")
+		if len(pageToken) > 0 {
+			call = call.PageToken(pageToken)
+		}
+
 		res, err := call.Do()
 		if err != nil {
 			logrus.Fatalf("Faild to youtube api call: %v", err)

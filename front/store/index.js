@@ -15,12 +15,15 @@ export const actions = {
 export const mutations = {
   mutatePopularVideos(state, payload) {
     state.items = payload.items ? state.items.concat(payload.items) : []
-    state.meta = payload.items
+    state.meta = payload
   },
 }
 
 export const getters = {
   getPopularVideos(state) {
     return state.items
+  },
+  getMeta(state) {
+    return state.meta
   },
 }
