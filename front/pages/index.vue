@@ -43,6 +43,7 @@ export default Vue.extend({
       const payload = {
         uri: ROUTES.GET.POPULARS,
         params: {
+          // @ts-ignore
           pageToken: this.nextPageToken,
         },
       }

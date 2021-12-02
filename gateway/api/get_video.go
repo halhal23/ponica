@@ -8,7 +8,7 @@ import (
 )
 
 type VideoResponse struct {
-	VideoList *youtube.VideoListResponse
+	VideoList *youtube.VideoListResponse `json:"video_list"`
 }
 
 func GetVideo() gin.HandlerFunc {
