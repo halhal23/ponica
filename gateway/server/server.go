@@ -58,6 +58,7 @@ func main() {
 	g := e.Group("/api")
 	{
 		g.GET("/populars", api.FetchMostPopularVideos())
+		g.GET("/video/:id", api.GetVideo())
 	}
 	e.Run()
 }
