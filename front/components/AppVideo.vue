@@ -12,7 +12,7 @@
       <hr />
       <small>{{ item.snippet.description | omit }}</small>
       <div></div>
-      <nuxt-link :to="`/video/${item.id}`">詳細</nuxt-link>
+      <nuxt-link :to="`/video/${videoId}`">詳細</nuxt-link>
     </div>
   </div>
 </template>
