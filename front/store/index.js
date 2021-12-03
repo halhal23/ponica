@@ -2,6 +2,7 @@ import { createRequestClient } from './request-client'
 export const state = () => ({
   items: [],
   item: {},
+  relatedItems: [],
   meta: {},
 })
 
@@ -19,6 +20,11 @@ export const actions = {
     }
     commit('mutateVideo', params)
   },
+  async fetchRelatedVideos({ commit }, payload) {
+    const client = createRequestClient(this.$axios)
+    const res = await client.get(payload.uri, payload.params)
+    commit('mutateRelatedVideos', res)
+  },
 }
 
 export const mutations = {
@@ -31,6 +37,14 @@ export const mutations = {
       payload.items && payload.items.length > 0 ? payload.items[0] : {}
     state.item = params
   },
+  mutateRelatedVideos(state, payload) {
+    state.relatedItems = []
+    payload.items.forEach((item) => {
+      if (item.snippet) {
+        state.relatedItems.push(item)
+      }
+    })
+  },
 }
 
 export const getters = {
@@ -42,5 +56,8 @@ export const getters = {
   },
   getVideo(state) {
     return state.item
+  },
+  getRelatedVideos(state) {
+    return state.relatedItems
   },
 }
