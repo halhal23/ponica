@@ -13,8 +13,7 @@ func FetchMostPopularVideos() gin.HandlerFunc {
 		yts := service.(*youtube.Service)
 
 		call := yts.Videos.List([]string{
-			"id",
-			"snippet",
+			"id,snippet",
 		}).Chart("mostPopular").MaxResults(3)
 
 		pageToken := ctx.Query("pageToken")

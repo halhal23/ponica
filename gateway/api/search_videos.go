@@ -12,7 +12,7 @@ func SearchVideos() gin.HandlerFunc {
 		service, _ := ctx.Get("yts")
 		yts := service.(*youtube.Service)
 		query := ctx.Query("q")
-		call := yts.Search.List([]string{"id", "snippet"}).Q(query).MaxResults(3)
+		call := yts.Search.List([]string{"id,snippet"}).Q(query).MaxResults(3)
 
 		pageToken := ctx.Query("pageToken")
 		if len(pageToken) > 0 {

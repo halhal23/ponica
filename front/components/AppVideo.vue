@@ -12,7 +12,7 @@
       <hr />
       <small>{{ item.snippet.description | omit }}</small>
       <div></div>
-      <nuxt-link :to="`/video/${videoId}`">詳細</nuxt-link>
+      <nuxt-link v-if="videoId" :to="`/video/${videoId}`">詳細</nuxt-link>
     </div>
   </div>
 </template>
@@ -35,8 +35,8 @@ export default {
       type: Object,
       required: true,
     },
+    // eslint-disable-next-line vue/require-prop-types
     videoId: {
-      type: String,
       required: true,
     },
   },

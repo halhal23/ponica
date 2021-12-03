@@ -3,6 +3,7 @@ export const ROUTES = {
     POPULARS: '/api/populars',
     VIDEO: '/api/video/:id',
     RELATEDS: '/api/related/:id',
+    SEARCH: '/api/search',
   },
 }
 
