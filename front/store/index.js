@@ -1,4 +1,5 @@
 import { createRequestClient } from './request-client'
+import firebase from '~/plugins/firebase'
 export const state = () => ({
   items: [],
   item: {},
@@ -6,6 +7,7 @@ export const state = () => ({
   searchedItems: [],
   searchedMeta: {},
   meta: {},
+  token: '',
 })
 
 export const actions = {
@@ -31,6 +33,22 @@ export const actions = {
     const client = createRequestClient(this.$axios)
     const res = await client.get(payload.uri, payload.params)
     commit('mutateSearchedItems', res)
+  },
+  async signUp({ commit }, payload) {
+    console.log('--------1---------')
+    await firebase
+      .auth()
+      .createUserWithEmailAndPassword(payload.email, payload.password)
+    const res = await firebase
+      .auth()
+      .signInWithEmailAndPassword(payload.email, payload.password)
+    const token = await res.user.getIdToken()
+    this.$cookies.set('jwt_token', token)
+    commit('mutateToken', token)
+    this.app.router.push('/')
+  },
+  setToken({ commit }, payload) {
+    commit('mutateToken', payload)
   },
 }
 
@@ -58,6 +76,9 @@ export const mutations = {
       : []
     state.searchedMeta = payload
   },
+  mutateToken(state, payload) {
+    state.token = payload
+  },
 }
 
 export const getters = {
@@ -78,5 +99,8 @@ export const getters = {
   },
   getSearchedMeta(state) {
     return state.searchedMeta
+  },
+  getToken(state) {
+    return state.token
   },
 }
